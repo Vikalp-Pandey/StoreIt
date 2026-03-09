@@ -1,0 +1,23 @@
+{
+  "name": "storeit",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Storex Monorepo",
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "check-types": "turbo check-types",
+    "add:api": "pnpm --filter api add",
+    "add:utils":"pnpm --filter httputils add",
+    "add:email":"pnpm --filter emailservices add",
+    "add:fileupload":"pnpm --filter fileupload add"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.30.3",
+  "devDependencies": {
+    "turbo": "^2.8.14"
+  }
+}
