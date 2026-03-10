@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@services/emailservices": "workspace:*",
+    "@services/fileupload": "workspace:*",
     "@types/qrcode": "^1.5.6",
     "@types/speakeasy": "^2.0.10",
     "axios": "^1.13.6",

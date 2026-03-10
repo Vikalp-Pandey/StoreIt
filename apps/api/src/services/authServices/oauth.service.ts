@@ -53,6 +53,7 @@ const signinwithGithub = async (code: string) => {
     email: email,
     accountType: accountType.Github,
     accessToken: access_token,
+    twoFactorEnabled:false
   };
 
   return userData;
@@ -108,6 +109,7 @@ const signinwithGoogle = async (code: string) => {
     email: user.email,
     picture: user.picture,
     accountType: accountType.Google,
+    twoFactorEnabled:false
   };
 };
 const oauthService = {

@@ -17,6 +17,9 @@ importers:
       '@services/emailservices':
         specifier: workspace:*
         version: link:../../services/emailServices
+      '@services/fileupload':
+        specifier: workspace:*
+        version: link:../../services/fileUploadServices
       '@types/qrcode':
         specifier: ^1.5.6
         version: 1.5.6
@@ -103,12 +106,6 @@ importers:
       '@types/express':
         specifier: ^5.0.6
         version: 5.0.6
-
-  services/authService:
-    dependencies:
-      '@packages/httputils':
-        specifier: workspace:*
-        version: link:../../packages/httpUtils
 
   services/emailServices:
     dependencies:

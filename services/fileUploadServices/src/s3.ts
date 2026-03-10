@@ -1,4 +1,4 @@
-import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 
@@ -31,18 +31,19 @@ export interface AwsS3Credentials{
     secretAccessKey:string 
 }
 
-const generateUploadUrl = async (fileName:string, fileType:string, {
+export const generateUploadUrl = async (fileName:string, fileType:string, {
     bucket_name,
     region,
     accessKeyId,
     secretAccessKey   
 }:AwsS3Credentials) => {
+
     const cleanFileName = fileName.replace(/[^\w.-]/g, '');
     // Path where uploaded file gets stored in S3 bucket
     const uniqueKey = `uploads/${cleanFileName}`;
 
     // ^ PutObjectCommand :"I want to upload a file into the bucket."
-    const command = new PutObjectCommand({
+    const putCommand = new PutObjectCommand({
         Bucket: bucket_name,
         Key: uniqueKey,
         ContentType: fileType,
@@ -50,9 +51,23 @@ const generateUploadUrl = async (fileName:string, fileType:string, {
         ACL: 'private' 
     });
 
+    const getCommand = new GetObjectCommand({
+        Bucket: bucket_name,
+        Key: "uploads/VikalpPhoto.jpg", 
+    });
     const s3Client = await S3(region,accessKeyId,secretAccessKey)
-    const url = await getSignedUrl(s3Client, command, { expiresIn: 300 });
-    return { url, key: uniqueKey };
+
+
+    //^ The File URL is the permanent location of the file inside the bucket.
+    // const fileUrl = `https://${bucket_name}.s3.amazonaws.com/${uniqueKey}`
+
+    const fileUrl = await getSignedUrl(s3Client,getCommand,{expiresIn:300});
+    
+    // ^ An Upload URL is a temporary presigned URL that allows a client to upload a file directly to S3.
+    // It is generated using the AWS SDK.
+    const uploadUrl = await getSignedUrl(s3Client, putCommand, { expiresIn: 300 });
+
+    return { fileUrl,uploadUrl, key: uniqueKey };
 };
 
 
