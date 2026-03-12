@@ -37,8 +37,8 @@ export const generateUploadUrl = async (fileName:string, fileType:string, {
     accessKeyId,
     secretAccessKey   
 }:AwsS3Credentials) => {
-
-    const cleanFileName = fileName.replace(/[^\w.-]/g, '');
+    
+    const cleanFileName = fileName.replace(/[^\w.-]/g, '') || fileName;
     // Path where uploaded file gets stored in S3 bucket
     const uniqueKey = `uploads/${cleanFileName}`;
 
@@ -53,7 +53,7 @@ export const generateUploadUrl = async (fileName:string, fileType:string, {
 
     const getCommand = new GetObjectCommand({
         Bucket: bucket_name,
-        Key: "uploads/VikalpPhoto.jpg", 
+        Key: uniqueKey, 
     });
     const s3Client = await S3(region,accessKeyId,secretAccessKey)
 

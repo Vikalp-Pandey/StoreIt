@@ -1,5 +1,5 @@
 import jwtService from '@/services/authServices/auth.service';
-import env from '@/env';
+import env from '@packages/env';
 import {
   asyncHandler,
   CookieConfig,

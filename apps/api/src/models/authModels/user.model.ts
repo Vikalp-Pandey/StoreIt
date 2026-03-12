@@ -1,6 +1,6 @@
 import { model, Document, Schema } from 'mongoose';
 import bcrypt from 'bcryptjs';
-import env from '@/env';
+import env from '@packages/env';
 
 export enum accountType {
   Github = 'Github',

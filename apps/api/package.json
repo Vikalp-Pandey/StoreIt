@@ -2,12 +2,14 @@
   "name": "@apps/api",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
     "build": "tsc"
   },
   "dependencies": {
+    "@packages/env": "workspace:*",
     "@services/emailservices": "workspace:*",
     "@services/fileupload": "workspace:*",
     "@types/qrcode": "^1.5.6",
@@ -28,6 +30,7 @@
   "devDependencies": {
     "@packages/httputils": "workspace:*",
     "@react-email/components": "^1.0.8",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.3.5",

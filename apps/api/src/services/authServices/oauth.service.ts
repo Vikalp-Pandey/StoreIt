@@ -1,4 +1,4 @@
-import env from '@/env';
+import env from '@packages/env';
 import { accountType } from '@/models/authModels/user.model';
 import axios from 'axios';
 

@@ -6,7 +6,7 @@ import {
   sendResponse,
 } from '@packages/httputils';
 import { verifyJwt } from '@/services/authServices/auth.service';
-import env from '@/env';
+import env from '@packages/env';
 import userService from '@/services/authServices/user.service';
 
 declare global {

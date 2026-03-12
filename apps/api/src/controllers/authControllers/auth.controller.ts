@@ -1,5 +1,5 @@
 import {EmailService } from '@services/emailservices'
-import env from '@/env';
+import env from '@packages/env';
 import {
   asyncHandler,
   logger,

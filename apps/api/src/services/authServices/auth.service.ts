@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import env from '@/env';
+import env from '@packages/env';
 import { logger } from '@packages/httputils';
 import { ResetPassword } from '@/models/authModels/resetPassword.model';
 import User from '@/models/authModels/user.model';

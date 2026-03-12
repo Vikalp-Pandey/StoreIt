@@ -9,9 +9,11 @@
     "lint": "turbo lint",
     "check-types": "turbo check-types",
     "add:api": "pnpm --filter api add",
-    "add:utils":"pnpm --filter httputils add",
-    "add:email":"pnpm --filter emailservices add",
-    "add:fileupload":"pnpm --filter fileupload add"
+    "add:utils": "pnpm --filter httputils add",
+    "add:env": "pnpm --filter env add",
+    "add:email": "pnpm --filter emailservices add",
+    "add:fileupload": "pnpm --filter fileupload add",
+    "add:ui": "pnpm --filter ui add"
   },
   "keywords": [],
   "author": "",
