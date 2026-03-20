@@ -1,159 +1,114 @@
-# Turborepo starter
+# 🚀 StoreX: The Ultimate File Management Solution
 
-This Turborepo starter is maintained by the Turborepo core team.
+StoreX is a modern, high-performance file storage and management platform built with a focus on security, speed, and a premium user experience. Leveraging a monorepo architecture, StoreX integrates a robust Express backend with a cutting-edge React frontend to provide seamless file operations powered by AWS S3.
 
-## Using this example
+![StoreX Banner](apps/ui/public/App_Image.png)
 
-Run the following command:
+---
 
-```sh
-npx create-turbo@latest
+## ✨ Key Features
+
+- **🔐 Secure Authentication**: Multi-layered security with JWT, bcrypt hashing, and OTP verification via email.
+- **🛡️ Multi-Factor Authentication (MFA)**: Support for 2FA using TOTP (Google Authenticator) with QR code generation.
+- **📁 Cloud Storage Integration**: Direct, secure file uploads and management using AWS S3.
+- **📊 Real-time Dashboard**: A sleek, responsive interface to manage your files, see storage stats, and more.
+- **🎨 Premium UI/UX**: Built with Tailwind CSS 4, Framer Motion for smooth animations, and Shadcn UI components.
+- **⚡ Monorepo Architecture**: Efficient development workflow powered by Turborepo and pnpm workspaces.
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend (`apps/ui`)
+- **Framework**: [React 19](https://react.dev/) + [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/) + [Shadcn UI](https://ui.shadcn.com/)
+- **State Management**: [TanStack Query (v5)](https://tanstack.com/query/latest)
+- **Forms**: [React Hook Form](https://react-hook-form.com/) + [Zod](https://zod.dev/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+
+### Backend (`apps/api`)
+- **Runtime**: [Node.js](https://nodejs.org/) + [TypeScript](https://www.typescriptlang.org/)
+- **Framework**: [Express](https://expressjs.com/)
+- **Database**: [MongoDB](https://www.mongodb.com/) via [Mongoose](https://mongoosejs.com/)
+- **Storage**: [AWS S3 SDK](https://aws.amazon.com/s3/)
+- **Security**: [Passport](http://www.passportjs.org/), [Speakeasy](https://github.com/speakeasyjs/speakeasy), [JsonWebToken](https://github.com/auth0/node-jsonwebtoken)
+
+### Infrastructure & Tooling
+- **Monorepo**: [Turborepo](https://turbo.build/)
+- **Package Manager**: [pnpm](https://pnpm.io/)
+- **Shared Packages**: Environment management & HTTP utilities.
+
+---
+
+## 📂 Project Structure
+
+```text
+StoreX/
+├── apps/
+│   ├── api/            # Express Backend
+│   └── ui/             # React Frontend
+├── packages/
+│   ├── env/            # Shared Environment Config
+│   └── httpUtils/      # Shared HTTP Utilities
+├── services/
+│   ├── emailServices/  # Email Sending Logic
+│   └── fileUpload/     # AWS S3 Integration
+├── turbo.json          # Turborepo Configuration
+└── package.json        # Main Monorepo Entry
 ```
 
-## What's inside?
+---
 
-This Turborepo includes the following packages/apps:
+## 🚀 Getting Started
 
-### Apps and Packages
+### Prerequisites
+- Node.js (Latest LTS)
+- pnpm (`npm install -g pnpm`)
+- MongoDB (Local or Atlas)
+- AWS S3 Bucket (for file storage)
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### Installation
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/storex.git
+   cd storex
+   ```
 
-### Utilities
+2. **Install dependencies:**
+   ```bash
+   pnpm install
+   ```
 
-This Turborepo has some additional tools already setup for you:
+3. **Set up environment variables:**
+   Create a `.env` file in `apps/api` and `apps/ui` (or use the shared `@packages/env`) with the following:
+   - `MONGO_URI`
+   - `JWT_SECRET`
+   - `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`, `AWS_BUCKET_NAME`
+   - `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+4. **Run the application:**
+   ```bash
+   pnpm dev
+   ```
+   This will start both the API and the UI concurrently using Turborepo.
 
-### Build
+---
 
-To build all apps and packages, run the following command:
+## 📜 Available Scripts
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+- `pnpm dev`: Start all apps in development mode.
+- `pnpm build`: Build all apps for production.
+- `pnpm lint`: Run linting across the monorepo.
+- `pnpm format`: Format the code using Prettier.
 
-```sh
-cd my-turborepo
-turbo build
-```
+---
 
-Without global `turbo`, use your package manager:
+## 🤝 Contributing
 
-```sh
-cd my-turborepo
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+## 📄 License
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo build --filter=docs
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo dev
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+This project is licensed under the [ISC License](LICENSE).
